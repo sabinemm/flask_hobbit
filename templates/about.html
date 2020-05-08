@@ -2,9 +2,6 @@
 {% block content %}
 
 
-{{ company[0]["name"] }}
-
-
 <h2>{{ page_title }}</h2>
 <p>
     The formation of the group grew out of a meeting Gandalf had with Thorin in Bree which kindled Thorin's interest in
@@ -15,35 +12,39 @@
     action. The superstitious Dwarves also considered thirteen to be an unlucky number, and as Gandalf had planned to
     leave on other business, welcomed a fourteenth to fill into their party.
 </p>
-<div class="row featurette">
-    <div class="col-md-7">
-        <h3>Thorin Oakenshield</h3>
-        <p>Thorin II, also called the Oakenshield, King under the Mountain or the Mountain King,[1] was the son of
-            Thráin II, the older brother of Frerin and Dís, the grandson of King Thrór and the uncle of Fíli and Kíli.
-            Thorin was best known for his deeds as leader of a company that infiltrated the lost Kingdom under the
-            Mountain to take it back from Smaug and for leading an alliance of Men, Dwarves, and Elves in the Battle of
-            the Five Armies.</p>
-    </div>
-    <div class="col-md-5">
-        <img src="https://upload.wikimedia.org/wikipedia/en/e/ed/Thorin%2C_from_the_Hobbit.jpg" alt="">
-    </div>
-</div>
+
+{% for member in company %}
+
 
 <div class="row featurette">
+
+    {% if loop.index % 2 !=0 %}
+
+    <div class="col-md-7">
+        <h3>{{ loop.index }}. {{ member.name }}</h3>
+        <p>{{ member.description }}</p>
+    </div>
     <div class="col-md-5">
-        <img src="https://vignette.wikia.nocookie.net/lotr/images/b/b4/The-Hobbit-Fili-and-Kili.jpg/revision/latest?cb=20110714202952"
-            alt="">
+        <img class="featurette-image img-responsive" src="{{ member.image_source }}" alt="">
+    </div>
+    {% else %}
+    <div class="col-md-5">
+        <img class="featurette-image img-responsive" src="{{ member.image_source }}" alt="">
     </div>
     <div class="col-md-7">
-        <h3>Fíli and Kíli</h3>
-        <p>
-            Fíli and Kíli were brothers, the youngest of the thirteen dwarves who set out with Thorin Oakenshield's
-            company, along with Gandalf and Bilbo Baggins, to reclaim the Lonely Mountain from the dragon Smaug. Fíli
-            and Kíli were the two most active dwarves of Thorin's company, and apart from Balin, and possibly
-            Bombur, they appeared more frequently as "individual" characters in Tolkien's novel than the rest of
-            Thorin's companions, who were most often named only in "group" references to the entire company.
-        </p>
+        <h3>{{ loop.index }}. {{ member.name }}</h3>
+        <p>{{ member.description }}</p>
     </div>
+    {% endif %}
+
 </div>
+
+{% if loop.index !=13 %}
+
+<hr class="featurette-divider">
+
+{% endif %}
+
+{% endfor %} </div>
 
 {% endblock %}
