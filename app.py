@@ -47,5 +47,4 @@ def careers():
 
 
 if __name__ == "__main__":
-    app.run(host=os.environ.get("IP"),
-            debug=True)
+    app.run(host='0.0.0.0', debug=True)
